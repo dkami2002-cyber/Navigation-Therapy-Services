@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navigation Therapy — ABA, Speech, OT &amp; PT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest-950:#0B2A1F;
+    --forest-800:#123B29;
+    --forest-700:#1B5E3F;
+    --forest-600:#2D7A52;
+    --forest-500:#3C9367;
+    --sage-200:#DCEFE2;
+    --sage-300:#AED9BE;
+    --cream:#F7F5EE;
+    --white:#FFFFFF;
+    --gold:#C79A46;
+    --gold-light:#E4C784;
+    --gold-pale:#F2E1AE;
+    --ink:#152019;
+    --ink-soft:#3C4A42;
+    --line:#D8E3DC;
+    --radius:14px;
+    --shadow:0 10px 30px rgba(11,42,31,0.12);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces',serif;
+    color:var(--forest-950);
+    margin:0 0 .4em 0;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  .myth-word{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;}
+  p{margin:0 0 1em 0;color:var(--ink-soft);}
+  a{color:inherit;}
+  img,svg{display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+  button{font-family:'Inter',sans-serif;cursor:pointer;}
+  .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible{
+    outline:3px solid var(--gold); outline-offset:2px;
+  }
+
+  /* ---------- Header ---------- */
+  header.site{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,42,31,0.97);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .nav-row{display:flex;align-items:center;justify-content:space-between;padding:14px 28px;gap:20px;}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--white);}
+  .brand-word{font-family:'Fraunces',serif;font-size:1.24rem;font-weight:600;color:var(--white);line-height:1.1;}
+  .brand-word small{display:block;font-family:'Inter',sans-serif;font-size:.6rem;letter-spacing:.16em;font-weight:600;color:var(--sage-300);text-transform:uppercase;margin-top:2px;}
+  nav.primary{display:flex;align-items:center;gap:24px;}
+  nav.primary a{color:var(--sage-200);text-decoration:none;font-size:.9rem;font-weight:500;padding:8px 2px;border-bottom:2px solid transparent;transition:.15s;white-space:nowrap;}
+  nav.primary a:hover, nav.primary a.active{color:var(--white);border-bottom-color:var(--gold);}
+  .nav-actions{display:flex;align-items:center;gap:10px;}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:11px 20px;border-radius:999px;border:1.5px solid transparent;
+    font-weight:600;font-size:.88rem;text-decoration:none;transition:.15s;
+  }
+  .btn-gold{background:var(--gold);color:var(--forest-950);}
+  .btn-gold:hover{background:var(--gold-light);}
+  .btn-outline-light{border-color:rgba(255,255,255,0.4);color:var(--white);background:transparent;}
+  .btn-outline-light:hover{border-color:var(--white);background:rgba(255,255,255,0.08);}
+  .btn-forest{background:var(--forest-700);color:var(--white);}
+  .btn-forest:hover{background:var(--forest-600);}
+  .btn-outline-forest{border-color:var(--forest-700);color:var(--forest-700);background:transparent;}
+  .btn-outline-forest:hover{background:var(--forest-700);color:var(--white);}
+  .btn-block{width:100%;}
+  .btn-sm{padding:8px 14px;font-size:.82rem;border-radius:999px;}
+  .menu-toggle{display:none;background:none;border:1px solid rgba(255,255,255,.35);color:var(--white);border-radius:8px;padding:8px 10px;}
+
+  @media (max-width:900px){
+    nav.primary{position:fixed;inset:64px 0 0 0;background:var(--forest-950);flex-direction:column;align-items:flex-start;padding:24px 28px;gap:4px;transform:translateX(-100%);transition:.2s;overflow-y:auto;}
+    nav.primary.open{transform:translateX(0);}
+    nav.primary a{width:100%;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08);}
+    .nav-actions .btn-outline-light{display:none;}
+    .menu-toggle{display:inline-flex;}
+  }
+
+  .compass-mark{flex-shrink:0;}
+
+  /* ---------- Pages ---------- */
+  .page{display:none;}
+  .page.active{display:block;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:radial-gradient(circle at 78% 15%, rgba(199,154,70,0.18), transparent 55%), linear-gradient(180deg, var(--forest-950), var(--forest-800));
+    color:var(--white);
+    padding:70px 0 84px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background-image:radial-gradient(1px 1px at 12% 22%, rgba(255,255,255,.5) 0, transparent 60%),
+                      radial-gradient(1px 1px at 24% 68%, rgba(255,255,255,.35) 0, transparent 60%),
+                      radial-gradient(1px 1px at 8% 80%, rgba(255,255,255,.3) 0, transparent 60%),
+                      radial-gradient(1.5px 1.5px at 33% 12%, rgba(255,255,255,.45) 0, transparent 60%);
+  }
+  .hero .wrap{display:grid;grid-template-columns:1.1fr 0.9fr;gap:50px;align-items:center;position:relative;z-index:1;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    color:var(--gold-light);font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    margin-bottom:16px;
+  }
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--gold-light);}
+  .hero h1{color:var(--white);font-size:clamp(2.1rem,4vw,3.15rem);line-height:1.09;max-width:15ch;}
+  .hero p.lead{color:var(--sage-200);font-size:1.06rem;max-width:46ch;margin-bottom:26px;}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:30px;}
+  .hero-stats{display:flex;gap:30px;flex-wrap:wrap;}
+  .hero-stats div{border-left:2px solid rgba(255,255,255,0.18);padding-left:14px;}
+  .hero-stats strong{display:block;font-family:'Fraunces',serif;font-size:1.4rem;color:var(--white);}
+  .hero-stats span{font-size:.78rem;color:var(--sage-300);}
+
+  .rose-wrap{position:relative;width:100%;max-width:420px;aspect-ratio:1/1;margin:0 auto;}
+  .rose-svg{width:100%;height:100%;}
+  .rose-point{position:absolute;width:118px;transform:translate(-50%,-50%);text-align:center;}
+  .rose-point .dot{width:52px;height:52px;border-radius:50%;background:var(--forest-700);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 6px;color:var(--gold-light);font-size:1.1rem;}
+  .rose-point .lbl{font-size:.72rem;font-weight:700;color:var(--white);letter-spacing:.03em;}
+  .rose-point .brg{font-size:.64rem;color:var(--sage-300);letter-spacing:.08em;}
+  .rp-n{top:2%;left:50%;}
+  .rp-e{top:50%;left:98%;}
+  .rp-s{top:98%;left:50%;}
+  .rp-w{top:50%;left:2%;}
+  .rose-caption{text-align:center;margin-top:10px;color:var(--sage-300);font-size:.78rem;}
+
+  @media (max-width:900px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .rose-wrap{max-width:300px;margin-top:16px;}
+  }
+
+  /* ---------- Section shells ---------- */
+  section.block{padding:74px 0;}
+  section.block.alt{background:var(--white);}
+  section.block.dark{background:linear-gradient(180deg,var(--forest-950),var(--forest-800));color:var(--white);}
+  .section-head{max-width:640px;margin-bottom:42px;}
+  .section-head .eyebrow{color:var(--forest-600);}
+  .section-head .eyebrow::before{background:var(--forest-600);}
+  .section-head.on-dark h2{color:var(--white);}
+  .section-head.on-dark p{color:var(--sage-200);}
+  .section-head.on-dark .eyebrow{color:var(--gold-light);}
+  .section-head.on-dark .eyebrow::before{background:var(--gold-light);}
+  .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+  .section-head h2{font-size:clamp(1.55rem,3vw,2.2rem);}
+
+  /* ---------- Guiding principles (mythology) ---------- */
+  .myth-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  @media (max-width:860px){.myth-grid{grid-template-columns:1fr;}}
+  .myth-card{
+    background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius);
+    padding:28px 24px;position:relative;
+  }
+  .myth-card .myth-icon{width:50px;height:50px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;margin-bottom:16px;color:var(--gold-light);}
+  .myth-card h3{color:var(--white);font-size:1.1rem;margin-bottom:4px;}
+  .myth-card .myth-sub{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold-light);font-size:1.02rem;margin-bottom:10px;display:block;}
+  .myth-card p{color:var(--sage-200);font-size:.9rem;margin-bottom:0;}
+  .thread-divider{display:flex;align-items:center;justify-content:center;gap:10px;margin:8px 0 40px;color:var(--sage-300);}
+  .thread-divider::before,.thread-divider::after{content:"";flex:1;height:1px;background:rgba(255,255,255,0.15);max-width:120px;}
+
+  /* ---------- Quotes / inspiration ---------- */
+  .quote-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  @media (max-width:860px){.quote-grid{grid-template-columns:1fr;}}
+  .quote-card{background:var(--cream);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px;}
+  .quote-card .qmark{font-family:'Fraunces',serif;font-size:2.4rem;color:var(--gold);line-height:.6;margin-bottom:10px;display:block;}
+  .quote-card p.qtext{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.18rem;color:var(--forest-950);margin-bottom:14px;}
+  .quote-card .qwho{font-size:.78rem;font-weight:600;color:var(--forest-600);text-transform:uppercase;letter-spacing:.06em;}
+
+  /* ---------- Service cards ---------- */
+  .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  @media (max-width:1000px){.services-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.services-grid{grid-template-columns:1fr;}}
+  .svc-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:26px 22px;position:relative;transition:.15s;}
+  .svc-card:hover{box-shadow:var(--shadow);transform:translateY(-3px);}
+  .svc-bearing{position:absolute;top:20px;right:20px;font-family:'Fraunces',serif;font-size:.72rem;color:var(--sage-300);font-weight:600;letter-spacing:.06em;}
+  .svc-icon{width:48px;height:48px;border-radius:12px;background:var(--sage-200);display:flex;align-items:center;justify-content:center;color:var(--forest-700);margin-bottom:16px;}
+  .svc-card h3{font-size:1.1rem;margin-bottom:8px;}
+  .svc-card p{font-size:.9rem;margin-bottom:14px;}
+  .svc-toggle{background:none;border:none;color:var(--forest-700);font-weight:600;font-size:.84rem;padding:0;display:flex;align-items:center;gap:6px;}
+  .svc-detail{max-height:0;overflow:hidden;transition:max-height .25s ease;font-size:.86rem;}
+  .svc-detail ul{margin:10px 0 0 0;padding-left:18px;color:var(--ink-soft);}
+  .svc-card.open .svc-detail{max-height:220px;}
+  .svc-card.open .svc-toggle .chevron{transform:rotate(180deg);}
+  .chevron{transition:.2s;}
+
+  /* ---------- Two-path (virtual/in-person) preview cards ---------- */
+  .path-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+  @media (max-width:800px){.path-grid{grid-template-columns:1fr;}}
+  .path-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:28px 26px;}
+  .path-card .path-icon{width:46px;height:46px;border-radius:50%;background:var(--forest-700);color:var(--gold-light);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+  .path-card h3{font-size:1.12rem;margin-bottom:6px;}
+  .path-card ul{margin:12px 0 18px;padding-left:18px;font-size:.87rem;color:var(--ink-soft);}
+  .path-card li{margin-bottom:5px;}
+
+  .card-panel{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow);}
+  .form-row{margin-bottom:16px;}
+  .form-row label{display:block;font-size:.82rem;font-weight:600;color:var(--forest-950);margin-bottom:6px;}
+  .form-row input, .form-row select, .form-row textarea{
+    width:100%;padding:11px 13px;border-radius:9px;border:1.5px solid var(--line);font-family:'Inter',sans-serif;font-size:.92rem;background:var(--cream);color:var(--ink);
+  }
+  .form-row input:focus, .form-row select:focus, .form-row textarea:focus{border-color:var(--forest-600);outline:none;background:var(--white);}
+  .form-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media (max-width:520px){.form-grid-2{grid-template-columns:1fr;}}
+  .success-note{display:none;margin-top:16px;background:var(--sage-200);border:1px solid var(--forest-500);color:var(--forest-950);padding:12px 14px;border-radius:9px;font-size:.86rem;font-weight:600;}
+  .success-note.show{display:block;}
+  .demo-flag{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--gold-light);color:var(--forest-950);padding:3px 9px;border-radius:999px;margin-bottom:10px;}
+
+  /* visit-type toggle */
+  .visit-toggle{display:flex;border:1.5px solid var(--line);border-radius:999px;padding:4px;margin-bottom:20px;background:var(--cream);}
+  .visit-toggle button{flex:1;border:none;background:none;padding:10px 8px;border-radius:999px;font-weight:600;font-size:.86rem;color:var(--ink-soft);}
+  .visit-toggle button.active{background:var(--forest-800);color:var(--white);}
+  .field-group{display:none;}
+  .field-group.show{display:block;}
+
+  /* ---------- Resources ---------- */
+  .res-groups{display:grid;grid-template-columns:1fr;gap:36px;}
+  .res-group h3{font-size:1.05rem;border-bottom:2px solid var(--forest-700);display:inline-block;padding-bottom:4px;margin-bottom:16px;}
+  .res-links{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  @media (max-width:800px){.res-links{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:520px){.res-links{grid-template-columns:1fr;}}
+  .res-card{display:flex;align-items:center;gap:12px;background:var(--white);border:1px solid var(--line);border-radius:11px;padding:14px 16px;text-decoration:none;transition:.15s;}
+  .res-card:hover{border-color:var(--forest-600);box-shadow:var(--shadow);}
+  .res-card .res-ico{width:36px;height:36px;border-radius:9px;background:var(--sage-200);color:var(--forest-700);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:700;font-family:'Fraunces',serif;}
+  .res-card .res-txt strong{display:block;font-size:.88rem;color:var(--forest-950);}
+  .res-card .res-txt span{font-size:.74rem;color:var(--ink-soft);}
+
+  /* ---------- Portals ---------- */
+  .portal-shell{min-height:520px;}
+  .portal-login{max-width:420px;margin:0 auto;text-align:center;}
+  .portal-login .card-panel{text-align:left;margin-top:22px;}
+  .dash{display:none;grid-template-columns:220px 1fr;gap:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--white);box-shadow:var(--shadow);}
+  .dash.show{display:grid;}
+  @media (max-width:760px){.dash.show{grid-template-columns:1fr;}}
+  .dash-side{background:var(--forest-950);color:var(--sage-200);padding:22px 18px;}
+  .dash-side .who{color:var(--white);font-weight:700;font-family:'Fraunces',serif;margin-bottom:2px;}
+  .dash-side .role{font-size:.74rem;color:var(--sage-300);margin-bottom:22px;}
+  .dash-nav{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px;}
+  .dash-nav button{text-align:left;background:none;border:none;color:var(--sage-200);padding:10px 12px;border-radius:8px;font-size:.87rem;font-weight:500;}
+  .dash-nav button:hover{background:rgba(255,255,255,0.06);}
+  .dash-nav button.active{background:var(--forest-700);color:var(--white);}
+  .dash-logout{margin-top:24px;background:none;border:1px solid rgba(255,255,255,.3);color:var(--sage-200);width:100%;padding:9px;border-radius:8px;font-size:.8rem;}
+  .dash-main{padding:26px 28px;}
+  .dash-pane{display:none;}
+  .dash-pane.active{display:block;}
+  .dash-main h3{font-size:1.15rem;margin-bottom:4px;}
+  .muted-sub{color:var(--ink-soft);font-size:.86rem;margin-bottom:20px;}
+
+  .upcoming-card{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;background:var(--sage-200);border:1px solid var(--forest-500);border-radius:12px;padding:16px 18px;margin-bottom:22px;}
+  .upcoming-card .uc-t{font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--forest-700);margin-bottom:4px;}
+  .upcoming-card strong{display:block;font-size:.95rem;color:var(--forest-950);}
+  .upcoming-card span{font-size:.8rem;color:var(--ink-soft);}
+
+  .client-item{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;cursor:pointer;background:var(--cream);}
+  .client-item:hover{border-color:var(--forest-600);}
+  .client-item.selected{border-color:var(--forest-700);background:var(--sage-200);}
+  .client-item strong{font-size:.9rem;}
+  .client-item span{font-size:.74rem;color:var(--ink-soft);}
+  .tag-pill{font-size:.68rem;font-weight:700;background:var(--sage-200);color:var(--forest-700);padding:3px 9px;border-radius:999px;}
+
+  .target-row{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid var(--line);border-radius:10px;padding:11px 14px;margin-bottom:8px;}
+  .target-row .t-name{font-size:.87rem;font-weight:600;}
+  .tally{display:flex;align-items:center;gap:8px;}
+  .tally button{width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:var(--white);font-weight:700;}
+  .tally button.plus{color:var(--forest-700);border-color:var(--forest-500);}
+  .tally button.minus{color:#a33;border-color:#e2b8b8;}
+  .tally .count{min-width:26px;text-align:center;font-weight:700;font-size:.9rem;}
+
+  .note-item{border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:12px;background:var(--cream);}
+  .note-item .nh{display:flex;justify-content:space-between;font-size:.78rem;color:var(--ink-soft);margin-bottom:6px;}
+  .note-item p{font-size:.88rem;margin:0;color:var(--ink);}
+
+  .doc-item{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:10px;background:var(--cream);}
+  .doc-item.signed{border-color:var(--forest-500);background:var(--sage-200);}
+  .doc-item .dt strong{display:block;font-size:.88rem;}
+  .doc-item .dt span{font-size:.74rem;color:var(--ink-soft);}
+
+  .invoice-item{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:10px;background:var(--cream);}
+  .invoice-item.paid{border-color:var(--forest-500);background:var(--sage-200);}
+  .invoice-item .it strong{display:block;font-size:.9rem;}
+  .invoice-item .it span{font-size:.74rem;color:var(--ink-soft);}
+
+  .modal-backdrop{display:none;position:fixed;inset:0;background:rgba(11,42,31,0.55);z-index:200;align-items:center;justify-content:center;padding:20px;}
+  .modal-backdrop.show{display:flex;}
+  .modal-box{background:var(--white);border-radius:16px;max-width:440px;width:100%;padding:28px;box-shadow:0 20px 60px rgba(0,0,0,0.3);max-height:88vh;overflow-y:auto;}
+  .modal-box h3{margin-bottom:6px;}
+  .modal-close{float:right;background:none;border:none;font-size:1.2rem;color:var(--ink-soft);}
+  .sig-pad{border:1.5px dashed var(--line);border-radius:10px;padding:18px;text-align:center;font-family:'Fraunces',serif;font-style:italic;font-size:1.3rem;color:var(--forest-800);background:var(--cream);min-height:60px;display:flex;align-items:center;justify-content:center;}
+
+  /* ---------- Footer ---------- */
+  footer.site{background:var(--forest-950);color:var(--sage-200);padding:56px 0 26px;margin-top:20px;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;margin-bottom:40px;}
+  @media (max-width:800px){.foot-grid{grid-template-columns:1fr 1fr;}}
+  footer.site h5{color:var(--white);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;}
+  footer.site ul{list-style:none;margin:0;padding:0;}
+  footer.site li{margin-bottom:9px;font-size:.86rem;}
+  footer.site a{text-decoration:none;color:var(--sage-200);}
+  footer.site a:hover{color:var(--white);}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,0.12);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.76rem;color:var(--sage-300);}
+
+  /* ---------- Chat widget ---------- */
+  .chat-fab{position:fixed;bottom:24px;right:24px;z-index:120;width:60px;height:60px;border-radius:50%;background:var(--forest-800);border:2px solid var(--gold);color:var(--gold-light);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(11,42,31,0.35);}
+  .chat-fab:hover{background:var(--forest-700);}
+  .chat-panel{position:fixed;bottom:96px;right:24px;z-index:120;width:340px;max-width:90vw;height:440px;background:var(--white);border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,0.3);display:none;flex-direction:column;overflow:hidden;border:1px solid var(--line);}
+  .chat-panel.show{display:flex;}
+  .chat-head{background:var(--forest-950);color:var(--white);padding:14px 16px;display:flex;align-items:center;gap:10px;}
+  .chat-head strong{font-family:'Fraunces',serif;font-size:.95rem;display:block;}
+  .chat-head span{font-size:.7rem;color:var(--sage-300);}
+  .chat-close{margin-left:auto;background:none;border:none;color:var(--sage-200);font-size:1.1rem;}
+  .chat-body{flex:1;overflow-y:auto;padding:14px 14px;display:flex;flex-direction:column;gap:10px;background:var(--cream);}
+  .msg{max-width:80%;padding:9px 12px;border-radius:12px;font-size:.85rem;line-height:1.4;}
+  .msg.bot{background:var(--white);border:1px solid var(--line);align-self:flex-start;border-bottom-left-radius:3px;}
+  .msg.user{background:var(--forest-700);color:var(--white);align-self:flex-end;border-bottom-right-radius:3px;}
+  .chat-quick{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px 10px;background:var(--cream);}
+  .chat-quick button{font-size:.72rem;border:1px solid var(--forest-500);color:var(--forest-700);background:var(--white);border-radius:999px;padding:6px 10px;}
+  .chat-input-row{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line);background:var(--white);}
+  .chat-input-row input{flex:1;border:1.5px solid var(--line);border-radius:999px;padding:9px 14px;font-size:.85rem;font-family:'Inter',sans-serif;}
+  .chat-input-row button{background:var(--forest-700);color:var(--white);border:none;border-radius:50%;width:38px;height:38px;flex-shrink:0;}
+
+  .disclaimer-banner{background:var(--sage-200);border:1px solid var(--forest-500);color:var(--forest-950);border-radius:12px;padding:14px 18px;font-size:.82rem;margin-bottom:30px;}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="site">
+  <div class="nav-row">
+    <a href="#" class="brand" onclick="goPage('home');return false;">
+      <span class="logo-mount" data-size="38"></span>
+      <span class="brand-word">Navigation Therapy<small>ABA · Speech · OT · PT</small></span>
+    </a>
+
+    <nav class="primary" id="primaryNav">
+      <a href="#" onclick="goPage('home');return false;">Home</a>
+      <a href="#" onclick="goPage('services');return false;">Services</a>
+      <a href="#" onclick="goPage('appointments');return false;">Appointments</a>
+      <a href="#" onclick="goPage('resources');return false;">Resources</a>
+      <a href="#" onclick="goPage('employee');return false;">Employee Login</a>
+      <a href="#" onclick="goPage('client');return false;">Client Login</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="btn btn-outline-light" onclick="goPage('client');return false;">Client Login</button>
+      <button class="btn btn-gold" onclick="goPage('appointments');return false;">Book an Appointment</button>
+      <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HOME ================= -->
+<main id="page-home" class="page active">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow">Pediatric &amp; Family Therapy Services</div>
+        <h1>Every family finds its way with a guide beside them.</h1>
+        <p class="lead">Navigation Therapy brings ABA, Speech-Language, Occupational, and Physical Therapy together under one compass — steady points to steer by, from your first visit to every milestone after. Meet us in our clinic or online.</p>
+        <div class="hero-ctas">
+          <button class="btn btn-gold" onclick="goPage('appointments');return false;">Book an Appointment</button>
+          <button class="btn btn-outline-light" onclick="goPage('services');return false;">Explore Services</button>
+        </div>
+        <div class="hero-stats">
+          <div><strong>4</strong><span>Disciplines, 1 care team</span></div>
+          <div><strong>In-person</strong><span>&amp; virtual visits</span></div>
+          <div><strong>Secure</strong><span>Client &amp; family portal</span></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="rose-wrap">
+          <svg class="rose-svg" viewBox="0 0 400 400">
+            <circle cx="200" cy="200" r="150" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
+            <circle cx="200" cy="200" r="106" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+            <line x1="200" y1="30" x2="200" y2="370" stroke="rgba(255,255,255,0.1)"/>
+            <line x1="30" y1="200" x2="370" y2="200" stroke="rgba(255,255,255,0.1)"/>
+            <path d="M200,200 m-26,0 a26,26 0 1,0 52,0 a19,19 0 1,0 -38,0 a12,12 0 1,0 24,0 a6,6 0 1,0 -12,0" fill="none" stroke="#C79A46" stroke-width="1.4" opacity=".55"/>
+            <polygon points="200,90 214,200 200,175 186,200" fill="#C79A46"/>
+            <polygon points="200,310 214,200 200,225 186,200" fill="#AED9BE"/>
+            <path d="M200,66 L204,80 L218,84 L204,88 L200,102 L196,88 L182,84 L196,80 Z" fill="#F2E1AE"/>
+            <circle cx="200" cy="200" r="7" fill="#F7F5EE"/>
+          </svg>
+          <div class="rose-point rp-n"><div class="dot">◆</div><div class="lbl">ABA</div><div class="brg">000°</div></div>
+          <div class="rose-point rp-e"><div class="dot">◆</div><div class="lbl">Speech</div><div class="brg">090°</div></div>
+          <div class="rose-point rp-s"><div class="dot">◆</div><div class="lbl">OT</div><div class="brg">180°</div></div>
+          <div class="rose-point rp-w"><div class="dot">◆</div><div class="lbl">PT</div><div class="brg">270°</div></div>
+        </div>
+        <p class="rose-caption">Like sailors once steered by a fixed star, our four disciplines steer by one shared plan.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MYTHOLOGY / GUIDING PRINCIPLES -->
+  <section class="block dark">
+    <div class="wrap">
+      <div class="section-head on-dark center">
+        <div class="eyebrow">Our Philosophy</div>
+        <h2>Every hero needs a guide</h2>
+        <p>Long before maps, travelers found their way home by a fixed point of light, and a thread that led safely back out of the maze. That's the promise we carry into every session.</p>
+      </div>
+      <div class="myth-grid">
+        <div class="myth-card">
+          <div class="myth-icon">★</div>
+          <span class="myth-sub">The guiding star</span>
+          <h3>A fixed point to steer by</h3>
+          <p>Sailors once crossed open water by keeping one star constant in the sky. We do the same with your child's goals — clear, individualized, and steady, session after session.</p>
+        </div>
+        <div class="myth-card">
+          <div class="myth-icon">✺</div>
+          <span class="myth-sub">Ariadne's thread</span>
+          <h3>A way through, not just in</h3>
+          <p>In the old story, a single thread led a hero safely out of a labyrinth. Our ABA, Speech, OT, and PT teams share one thread of notes and goals, so nothing gets lost between disciplines.</p>
+        </div>
+        <div class="myth-card">
+          <div class="myth-icon">✦</div>
+          <span class="myth-sub">The compass rose</span>
+          <h3>Many directions, one true course</h3>
+          <p>Four points, one instrument. Your family, your child, and our clinicians all read from the same compass — so everyone moves in the same direction, together.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES PREVIEW -->
+  <section class="block alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">What we offer</div>
+        <h2>Four disciplines, one coordinated route</h2>
+        <p>Each service area is a bearing on the same compass — our teams share notes and goals so your child's plan stays connected, whatever direction their care takes.</p>
+      </div>
+      <div class="services-grid" id="homeServicesGrid"></div>
+    </div>
+  </section>
+
+  <!-- TWO PATHS: VIRTUAL + IN-PERSON -->
+  <section class="block">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Two ways to meet your team</div>
+        <h2>Care that meets you where you are</h2>
+        <p>Some sessions are best face to face; others fit better into a busy week from home. Both are full, supported visits with the same care team.</p>
+      </div>
+      <div class="path-grid">
+        <div class="path-card">
+          <div class="path-icon">⌂</div>
+          <h3>In-person visits</h3>
+          <p style="font-size:.9rem;">Hands-on sessions at one of our clinic locations, with the full range of therapy tools and equipment on hand.</p>
+          <ul>
+            <li>Best for ABA, feeding therapy, and PT/OT skill-building</li>
+            <li>Two clinic locations, both wheelchair accessible</li>
+            <li>Waiting area support for siblings and family</li>
+          </ul>
+          <button class="btn btn-outline-forest" onclick="goPage('appointments');selectVisitType('inperson');return false;">Book In-Person</button>
+        </div>
+        <div class="path-card">
+          <div class="path-icon">◐</div>
+          <h3>Virtual visits</h3>
+          <p style="font-size:.9rem;">Live video sessions from any device — no downloads required. Ideal for consults, parent coaching, and select therapy sessions.</p>
+          <ul>
+            <li>Best for parent coaching &amp; ABA supervision</li>
+            <li>Speech, OT and PT consults and check-ins</li>
+            <li>Notes posted to your portal right after</li>
+          </ul>
+          <button class="btn btn-outline-forest" onclick="goPage('appointments');selectVisitType('virtual');return false;">Book Virtual</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSPIRATION / QUOTES -->
+  <section class="block alt">
+    <div class="wrap">
+      <div class="section-head center">
+        <div class="eyebrow">Guiding Words</div>
+        <h2>Progress, one session at a time</h2>
+        <p>Small steps, honestly measured, are how every family's course is charted.</p>
+      </div>
+      <div class="quote-grid">
+        <div class="quote-card">
+          <span class="qmark">&ldquo;</span>
+          <p class="qtext">You don't have to see the whole path. You only have to find the next step, and take it.</p>
+          <div class="qwho">— Navigation Therapy care team</div>
+        </div>
+        <div class="quote-card">
+          <span class="qmark">&ldquo;</span>
+          <p class="qtext">Every small word, every steady step, every quiet win — they all add up to the whole map.</p>
+          <div class="qwho">— A Navigation Therapy parent</div>
+        </div>
+        <div class="quote-card">
+          <span class="qmark">&ldquo;</span>
+          <p class="qtext">The thread doesn't have to be long. It just has to lead somewhere true.</p>
+          <div class="qwho">— Navigation Therapy care team</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="block dark" style="padding:56px 0;">
+    <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;">
+      <div>
+        <h2 style="color:var(--white);font-size:1.6rem;margin-bottom:6px;">Ready to find your family's course?</h2>
+        <p style="color:var(--sage-200);margin-bottom:0;">Book an in-person or virtual appointment, or explore resources for the road between sessions.</p>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <button class="btn btn-gold" onclick="goPage('appointments');return false;">Book an Appointment</button>
+        <button class="btn btn-outline-light" onclick="goPage('resources');return false;">Browse Resources</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= SERVICES PAGE ================= -->
+<main id="page-services" class="page">
+  <section class="block alt" style="padding-top:56px;">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Services</div>
+        <h2>Find your bearing</h2>
+        <p>Every family's route looks different. Select a discipline below to see how our team approaches it, or ask our assistant which services might fit your child.</p>
+      </div>
+      <div class="services-grid" id="servicesPageGrid"></div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= APPOINTMENTS PAGE ================= -->
+<main id="page-appointments" class="page">
+  <section class="block alt" style="padding-top:56px;">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Appointments</div>
+        <h2>Choose your path</h2>
+        <p>Book an in-person visit at one of our clinics, or a virtual session from home. Our care coordination team will confirm your appointment by phone or email.</p>
+      </div>
+      <div class="path-grid" style="margin-bottom:50px;">
+        <div class="path-card">
+          <div class="path-icon">⌂</div>
+          <h3>In-person visits</h3>
+          <p style="font-size:.88rem;">Full hands-on sessions at our clinic, using the complete range of therapy tools and equipment.</p>
+          <ol style="padding-left:18px;font-size:.87rem;color:var(--ink-soft);">
+            <li>Choose a clinic location &amp; time below</li>
+            <li>Arrive 10 minutes early to check in</li>
+            <li>Meet your clinician in a dedicated therapy room</li>
+          </ol>
+        </div>
+        <div class="path-card">
+          <div class="path-icon">◐</div>
+          <h3>Virtual visits</h3>
+          <p style="font-size:.88rem;">Live video sessions from any device — ideal for consults, parent coaching, and select therapy sessions.</p>
+          <ol style="padding-left:18px;font-size:.87rem;color:var(--ink-soft);">
+            <li>Choose "Virtual" &amp; a time below</li>
+            <li>Join from your client portal at visit time</li>
+            <li>Notes &amp; next steps post to your portal after</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="vc-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start;">
+        <div class="card-panel">
+          <span class="demo-flag">Prototype form — not connected to a live scheduler</span>
+          <h3 style="margin-bottom:14px;">Request an appointment</h3>
+
+          <div class="visit-toggle">
+            <button type="button" id="toggleInperson" class="active" onclick="selectVisitType('inperson')">In-Person</button>
+            <button type="button" id="toggleVirtual" onclick="selectVisitType('virtual')">Virtual</button>
+          </div>
+
+          <form id="apptForm" onsubmit="return submitAppt(event)">
+            <div class="form-grid-2">
+              <div class="form-row">
+                <label for="pName">Parent / Guardian name</label>
+                <input id="pName" type="text" required placeholder="Jordan Rivera">
+              </div>
+              <div class="form-row">
+                <label for="cName">Child's name</label>
+                <input id="cName" type="text" required placeholder="Sam Rivera">
+              </div>
+            </div>
+            <div class="form-row">
+              <label for="svcSelect">Service needed</label>
+              <select id="svcSelect" required>
+                <option value="">Select a discipline…</option>
+                <option>ABA Therapy</option>
+                <option>Speech-Language Therapy</option>
+                <option>Occupational Therapy</option>
+                <option>Physical Therapy</option>
+                <option>Not sure — please advise</option>
+              </select>
+            </div>
+
+            <div class="field-group show" id="fieldInperson">
+              <div class="form-row">
+                <label for="clinicSelect">Clinic location</label>
+                <select id="clinicSelect">
+                  <option>North Clinic — 4820 Compass Way</option>
+                  <option>South Clinic — 220 Harbor Light Rd</option>
+                </select>
+              </div>
+            </div>
+            <div class="field-group" id="fieldVirtual">
+              <div class="form-row">
+                <label>Device to join from</label>
+                <input type="text" placeholder="e.g. laptop, tablet, phone">
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-row">
+                <label for="apptDate">Preferred date</label>
+                <input id="apptDate" type="date" required>
+              </div>
+              <div class="form-row">
+                <label for="apptTime">Preferred time</label>
+                <input id="apptTime" type="time" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <label for="contact">Best contact (email or phone)</label>
+              <input id="contact" type="text" required placeholder="jordan@email.com">
+            </div>
+            <div class="form-row">
+              <label for="notes">Anything we should know?</label>
+              <textarea id="notes" rows="3" placeholder="Insurance, scheduling notes, current concerns…"></textarea>
+            </div>
+            <button type="submit" class="btn btn-gold btn-block" id="apptSubmitBtn">Request In-Person Visit</button>
+            <div class="success-note" id="apptSuccess">✓ Request received (demo). A coordinator would normally follow up within one business day.</div>
+          </form>
+        </div>
+
+        <div>
+          <div class="card-panel" style="margin-bottom:20px;">
+            <h3>Our clinic locations</h3>
+            <div class="note-item" style="background:var(--cream);">
+              <div class="nh"><span>North Clinic</span><span>Mon–Fri, 8am–6pm</span></div>
+              <p>4820 Compass Way, Suite 100 · Free parking · Wheelchair accessible</p>
+            </div>
+            <div class="note-item" style="background:var(--cream);margin-bottom:0;">
+              <div class="nh"><span>South Clinic</span><span>Mon–Fri, 8am–6pm</span></div>
+              <p>220 Harbor Light Rd · Near the transit center · Wheelchair accessible</p>
+            </div>
+          </div>
+          <div class="disclaimer-banner">
+            Not every session type is available both ways — your clinical team will help confirm whether an in-person or virtual visit is the better fit for a given goal.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= RESOURCES PAGE ================= -->
+<main id="page-resources" class="page">
+  <section class="block alt" style="padding-top:56px;">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Resources</div>
+        <h2>Tools for the journey home</h2>
+        <p>A collection of games, printables, and reference sites our therapists often recommend to families between sessions. External links open in a new tab.</p>
+      </div>
+
+      <div class="res-groups">
+        <div class="res-group">
+          <h3>Academic &amp; interactive learning games</h3>
+          <div class="res-links">
+            <a class="res-card" href="https://www.mathplayground.com" target="_blank" rel="noopener"><div class="res-ico">M</div><div class="res-txt"><strong>Math Playground</strong><span>Math games &amp; logic puzzles</span></div></a>
+            <a class="res-card" href="https://www.abcya.com" target="_blank" rel="noopener"><div class="res-ico">A</div><div class="res-txt"><strong>ABCya</strong><span>Early learning games by grade</span></div></a>
+            <a class="res-card" href="https://www.starfall.com" target="_blank" rel="noopener"><div class="res-ico">S</div><div class="res-txt"><strong>Starfall</strong><span>Reading &amp; phonics practice</span></div></a>
+            <a class="res-card" href="https://pbskids.org" target="_blank" rel="noopener"><div class="res-ico">P</div><div class="res-txt"><strong>PBS Kids</strong><span>Educational games &amp; videos</span></div></a>
+            <a class="res-card" href="https://www.funbrain.com" target="_blank" rel="noopener"><div class="res-ico">F</div><div class="res-txt"><strong>Funbrain</strong><span>Reading &amp; math for all ages</span></div></a>
+            <a class="res-card" href="https://www.coolmath4kids.com" target="_blank" rel="noopener"><div class="res-ico">C</div><div class="res-txt"><strong>Coolmath4Kids</strong><span>Math games &amp; brain teasers</span></div></a>
+          </div>
+        </div>
+
+        <div class="res-group">
+          <h3>Therapy materials &amp; printables</h3>
+          <div class="res-links">
+            <a class="res-card" href="https://www.teacherspayteachers.com" target="_blank" rel="noopener"><div class="res-ico">T</div><div class="res-txt"><strong>Teachers Pay Teachers</strong><span>Printables &amp; therapy materials</span></div></a>
+            <a class="res-card" href="https://www.boomlearning.com" target="_blank" rel="noopener"><div class="res-ico">B</div><div class="res-txt"><strong>Boom Learning</strong><span>Interactive task cards</span></div></a>
+            <a class="res-card" href="https://www.superduperinc.com" target="_blank" rel="noopener"><div class="res-ico">S</div><div class="res-txt"><strong>Super Duper Publications</strong><span>Speech &amp; language materials</span></div></a>
+          </div>
+        </div>
+
+        <div class="res-group">
+          <h3>Parent &amp; family support</h3>
+          <div class="res-links">
+            <a class="res-card" href="https://www.autismspeaks.org" target="_blank" rel="noopener"><div class="res-ico">A</div><div class="res-txt"><strong>Autism Speaks</strong><span>Family resources &amp; tool kits</span></div></a>
+            <a class="res-card" href="https://www.asha.org" target="_blank" rel="noopener"><div class="res-ico">A</div><div class="res-txt"><strong>ASHA</strong><span>Speech-language milestones</span></div></a>
+            <a class="res-card" href="https://www.aota.org" target="_blank" rel="noopener"><div class="res-ico">A</div><div class="res-txt"><strong>AOTA</strong><span>Occupational therapy info</span></div></a>
+            <a class="res-card" href="https://www.apta.org" target="_blank" rel="noopener"><div class="res-ico">A</div><div class="res-txt"><strong>APTA</strong><span>Physical therapy resources</span></div></a>
+            <a class="res-card" href="https://www.cdc.gov/ncbddd/actearly/" target="_blank" rel="noopener"><div class="res-ico">C</div><div class="res-txt"><strong>CDC Milestones</strong><span>Developmental milestone tracker</span></div></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= EMPLOYEE PORTAL ================= -->
+<main id="page-employee" class="page">
+  <section class="block alt" style="padding-top:56px;">
+    <div class="wrap portal-shell">
+      <div class="section-head">
+        <div class="eyebrow">Staff Access</div>
+        <h2>Employee portal</h2>
+        <p>Clinicians log in here to view their caseload and record session data for insurance documentation.</p>
+      </div>
+
+      <div class="disclaimer-banner">Prototype only — enter anything to preview. No real credentials, PHI, or insurance data are collected or stored by this demo.</div>
+
+      <div id="empLoginBox" class="portal-login">
+        <div class="card-panel">
+          <h3>Staff sign in</h3>
+          <form onsubmit="return doLogin(event,'employee')">
+            <div class="form-row"><label for="empUser">Work email</label><input id="empUser" type="email" required placeholder="clinician@navigationtherapy.com"></div>
+            <div class="form-row"><label for="empPass">Password</label><input id="empPass" type="password" required placeholder="••••••••"></div>
+            <button type="submit" class="btn btn-forest btn-block">Log in</button>
+          </form>
+        </div>
+      </div>
+
+      <div id="empDash" class="dash">
+        <div class="dash-side">
+          <div class="who">Alex Chen, BCBA</div>
+          <div class="role">ABA Clinical Team</div>
+          <ul class="dash-nav">
+            <li><button class="active" onclick="showPane('emp','clients')">My Caseload</button></li>
+            <li><button onclick="showPane('emp','session')">Session Data Entry</button></li>
+            <li><button onclick="showPane('emp','history')">Recent Notes</button></li>
+          </ul>
+          <button class="dash-logout" onclick="doLogout('employee')">Log out</button>
+        </div>
+        <div class="dash-main">
+          <div class="dash-pane active" id="emp-clients">
+            <h3>My caseload</h3>
+            <p class="muted-sub">Select a client to begin a session note.</p>
+            <div class="client-item selected" onclick="selectClient(this,'Micah T.')"><div><strong>Micah T.</strong><br><span>ABA · In-person · Tue/Thu 3:00pm</span></div><span class="tag-pill">Active</span></div>
+            <div class="client-item" onclick="selectClient(this,'Priya S.')"><div><strong>Priya S.</strong><br><span>ABA · Virtual · Mon/Wed 10:00am</span></div><span class="tag-pill">Active</span></div>
+            <div class="client-item" onclick="selectClient(this,'Owen R.')"><div><strong>Owen R.</strong><br><span>ABA · In-person · Fri 1:00pm</span></div><span class="tag-pill">Active</span></div>
+          </div>
+
+          <div class="dash-pane" id="emp-session">
+            <h3>Session data entry</h3>
+            <p class="muted-sub">Client: <strong id="sessClientName">Micah T.</strong> — logging trial data, similar to your Motivity workflow, for insurance-ready documentation.</p>
+
+            <div class="form-grid-2">
+              <div class="form-row"><label>Session date</label><input type="date"></div>
+              <div class="form-row"><label>Session length</label><input type="text" placeholder="e.g. 60 min" value="60 min"></div>
+            </div>
+
+            <h4 style="margin-top:6px;">Target goals</h4>
+            <div class="target-row">
+              <span class="t-name">Requests preferred item using 2-word phrase</span>
+              <div class="tally"><button class="minus" onclick="tally(this,-1)">−</button><span class="count">0</span><button class="plus" onclick="tally(this,1)">+</button></div>
+            </div>
+            <div class="target-row">
+              <span class="t-name">Follows 2-step instruction independently</span>
+              <div class="tally"><button class="minus" onclick="tally(this,-1)">−</button><span class="count">0</span><button class="plus" onclick="tally(this,1)">+</button></div>
+            </div>
+            <div class="target-row">
+              <span class="t-name">Tolerates transition between activities</span>
+              <div class="tally"><button class="minus" onclick="tally(this,-1)">−</button><span class="count">0</span><button class="plus" onclick="tally(this,1)">+</button></div>
+            </div>
+
+            <div class="form-row" style="margin-top:16px;">
+              <label>Session notes (for insurance documentation)</label>
+              <textarea rows="4" placeholder="Summarize progress, behaviors observed, prompting level used…"></textarea>
+            </div>
+            <button class="btn btn-gold" onclick="saveNote()">Save Session Note</button>
+            <div class="success-note" id="noteSuccess">✓ Session note saved (demo) and queued for supervisor review.</div>
+          </div>
+
+          <div class="dash-pane" id="emp-history">
+            <h3>Recently submitted notes</h3>
+            <div class="note-item"><div class="nh"><span>Micah T. — ABA · In-person</span><span>Aug 8, 2026</span></div><p>Independently requested items using 2-word phrases in 7/10 opportunities. Reduced prompting from full physical to gestural.</p></div>
+            <div class="note-item"><div class="nh"><span>Priya S. — ABA · Virtual</span><span>Aug 6, 2026</span></div><p>Followed 2-step instructions with 80% accuracy across three activity transitions during video coaching session.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= CLIENT PORTAL ================= -->
+<main id="page-client" class="page">
+  <section class="block alt" style="padding-top:56px;">
+    <div class="wrap portal-shell">
+      <div class="section-head">
+        <div class="eyebrow">Family Access</div>
+        <h2>Client &amp; family portal</h2>
+        <p>View session notes, sign paperwork, and manage payments in one place.</p>
+      </div>
+
+      <div class="disclaimer-banner">Prototype only — enter anything to preview. No real credentials, notes, or payment information are collected or stored by this demo.</div>
+
+      <div id="cliLoginBox" class="portal-login">
+        <div class="card-panel">
+          <h3>Family sign in</h3>
+          <form onsubmit="return doLogin(event,'client')">
+            <div class="form-row"><label for="cliUser">Email</label><input id="cliUser" type="email" required placeholder="jordan@email.com"></div>
+            <div class="form-row"><label for="cliPass">Password</label><input id="cliPass" type="password" required placeholder="••••••••"></div>
+            <button type="submit" class="btn btn-forest btn-block">Log in</button>
+          </form>
+        </div>
+      </div>
+
+      <div id="cliDash" class="dash">
+        <div class="dash-side">
+          <div class="who">Jordan Rivera</div>
+          <div class="role">Parent of Sam Rivera</div>
+          <ul class="dash-nav">
+            <li><button class="active" onclick="showPane('cli','notes')">Session Notes</button></li>
+            <li><button onclick="showPane('cli','paperwork')">Paperwork</button></li>
+            <li><button onclick="showPane('cli','payments')">Payments</button></li>
+          </ul>
+          <button class="dash-logout" onclick="doLogout('client')">Log out</button>
+        </div>
+        <div class="dash-main">
+          <div class="dash-pane active" id="cli-notes">
+            <h3>Session notes</h3>
+            <div class="upcoming-card">
+              <div>
+                <div class="uc-t">Next appointment</div>
+                <strong>Speech Therapy — In-person, North Clinic</strong>
+                <span>Fri, Aug 15, 2026 · 3:00pm</span>
+              </div>
+              <button class="btn btn-outline-forest btn-sm">Get Directions</button>
+            </div>
+            <p class="muted-sub">Notes are posted here after each session by your care team.</p>
+            <div class="note-item"><div class="nh"><span>Speech Therapy — Ms. Daniels</span><span>Aug 9, 2026</span></div><p>Sam practiced /s/ blends in structured play. Great carryover into spontaneous speech toward the end of the session.</p></div>
+            <div class="note-item"><div class="nh"><span>Occupational Therapy — Mr. Ibarra</span><span>Aug 5, 2026</span></div><p>Worked on bilateral coordination with therapy putty and lacing cards. Tolerated new textures with minimal prompting.</p></div>
+            <div class="note-item"><div class="nh"><span>ABA — Alex Chen, BCBA (Virtual)</span><span>Aug 4, 2026</span></div><p>Continued work on requesting preferred items with 2-word phrases during a video coaching session. Nice progress this week.</p></div>
+          </div>
+
+          <div class="dash-pane" id="cli-paperwork">
+            <h3>Paperwork</h3>
+            <p class="muted-sub">Review and sign documents below.</p>
+            <div class="doc-item" id="doc1"><div class="dt"><strong>Consent for Telehealth Services</strong><span>Requires signature</span></div><button class="btn btn-outline-forest btn-sm" onclick="openSign('doc1','Consent for Telehealth Services')">Review &amp; Sign</button></div>
+            <div class="doc-item" id="doc2"><div class="dt"><strong>Annual Treatment Plan Acknowledgement</strong><span>Requires signature</span></div><button class="btn btn-outline-forest btn-sm" onclick="openSign('doc2','Annual Treatment Plan Acknowledgement')">Review &amp; Sign</button></div>
+            <div class="doc-item signed" id="doc3"><div class="dt"><strong>Financial Responsibility Agreement</strong><span>Signed Jul 2, 2026</span></div><button class="btn btn-sm" disabled style="opacity:.6;background:var(--forest-700);color:#fff;">Signed</button></div>
+          </div>
+
+          <div class="dash-pane" id="cli-payments">
+            <h3>Payments</h3>
+            <p class="muted-sub">View balances and pay invoices securely.</p>
+            <div class="invoice-item" id="inv1"><div class="it"><strong>July co-pays — ABA sessions</strong><span>Due Aug 15, 2026</span></div><button class="btn btn-gold btn-sm" onclick="openPay('inv1','$120.00')">Pay $120.00</button></div>
+            <div class="invoice-item" id="inv2"><div class="it"><strong>Speech Therapy evaluation fee</strong><span>Due Aug 20, 2026</span></div><button class="btn btn-gold btn-sm" onclick="openPay('inv2','$75.00')">Pay $75.00</button></div>
+            <div class="invoice-item paid" id="inv3"><div class="it"><strong>June co-pays — OT sessions</strong><span>Paid Jul 5, 2026</span></div><button class="btn btn-sm" disabled style="opacity:.6;background:var(--forest-700);color:#fff;">Paid</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= SIGN MODAL ================= -->
+<div class="modal-backdrop" id="signModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('signModal')">✕</button>
+    <h3 id="signTitle">Document</h3>
+    <p style="font-size:.85rem;">By typing your name below, you agree this represents your electronic signature (demo only).</p>
+    <div class="form-row"><label>Type your full name</label><input id="signName" type="text" placeholder="Jordan Rivera"></div>
+    <div class="sig-pad" id="sigPreview">Your signature will appear here</div>
+    <div style="height:14px;"></div>
+    <button class="btn btn-forest btn-block" onclick="confirmSign()">Sign Document</button>
+  </div>
+</div>
+
+<!-- ================= PAY MODAL ================= -->
+<div class="modal-backdrop" id="payModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('payModal')">✕</button>
+    <h3>Make a payment</h3>
+    <p style="font-size:.85rem;">Amount due: <strong id="payAmount">$0.00</strong> (demo — no real transaction occurs)</p>
+    <div class="form-row"><label>Name on card</label><input type="text" placeholder="Jordan Rivera"></div>
+    <div class="form-row"><label>Card number</label><input type="text" placeholder="4242 4242 4242 4242"></div>
+    <div class="form-grid-2">
+      <div class="form-row"><label>Expiry</label><input type="text" placeholder="MM/YY"></div>
+      <div class="form-row"><label>CVC</label><input type="text" placeholder="123"></div>
+    </div>
+    <button class="btn btn-gold btn-block" onclick="confirmPay()">Submit Payment</button>
+  </div>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand" style="margin-bottom:14px;">
+          <span class="logo-mount" data-size="34"></span>
+          <span class="brand-word">Navigation Therapy</span>
+        </div>
+        <p style="color:var(--sage-300);font-size:.86rem;max-width:32ch;">Guiding families through ABA, Speech, Occupational, and Physical Therapy — in clinic and virtually.</p>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#" onclick="goPage('services');return false;">ABA Therapy</a></li>
+          <li><a href="#" onclick="goPage('services');return false;">Speech Therapy</a></li>
+          <li><a href="#" onclick="goPage('services');return false;">Occupational Therapy</a></li>
+          <li><a href="#" onclick="goPage('services');return false;">Physical Therapy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Portals</h5>
+        <ul>
+          <li><a href="#" onclick="goPage('client');return false;">Client Login</a></li>
+          <li><a href="#" onclick="goPage('employee');return false;">Employee Login</a></li>
+          <li><a href="#" onclick="goPage('appointments');return false;">Book an Appointment</a></li>
+          <li><a href="#" onclick="goPage('resources');return false;">Parent Resources</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul>
+          <li>hello@navigationtherapy.com</li>
+          <li>(555) 010-2040</li>
+          <li>Mon–Fri, 8am–6pm</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Navigation Therapy. This is a design prototype — not a live clinical or billing system.</span>
+      <span>Privacy Policy · Terms of Service</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= CHAT WIDGET ================= -->
+<button class="chat-fab" onclick="toggleChat()" aria-label="Open chat assistant">
+  <span class="logo-mount" data-size="28"></span>
+</button>
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-head">
+    <span class="logo-mount" data-size="24"></span>
+    <div><strong>The Wayfinder</strong><span>General info · not a clinician</span></div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="msg bot">Hi! I'm the Wayfinder, here to help point you in the right direction. I can share general info about our services, hours, and appointments. For clinical questions, our care team is always the best guide.</div>
+  </div>
+  <div class="chat-quick" id="chatQuick">
+    <button onclick="quickAsk('services')">Our services</button>
+    <button onclick="quickAsk('appointment')">Book a visit</button>
+    <button onclick="quickAsk('insurance')">Insurance</button>
+    <button onclick="quickAsk('location')">Locations</button>
+  </div>
+  <form class="chat-input-row" onsubmit="return sendChat(event)">
+    <input id="chatInput" type="text" placeholder="Type a message…">
+    <button type="submit" aria-label="Send">➤</button>
+  </form>
+</div>
+
+<script>
+/* ---------------- Logo ---------------- */
+function compassSVG(size){
+  return `<svg width="${size}" height="${size}" viewBox="0 0 100 100" class="compass-mark" color="#DCEFE2" aria-hidden="true">
+    <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="1" opacity=".4"/>
+    <circle cx="50" cy="50" r="39" fill="none" stroke="currentColor" stroke-width="2"/>
+    <g stroke="currentColor" stroke-width="1.4" opacity=".7">
+      <line x1="50" y1="4" x2="50" y2="12"/>
+      <line x1="50" y1="88" x2="50" y2="96"/>
+      <line x1="4" y1="50" x2="12" y2="50"/>
+      <line x1="88" y1="50" x2="96" y2="50"/>
+    </g>
+    <g fill="currentColor" opacity=".5">
+      <circle cx="78.3" cy="21.7" r="1.6"/>
+      <circle cx="78.3" cy="78.3" r="1.6"/>
+      <circle cx="21.7" cy="78.3" r="1.6"/>
+      <circle cx="21.7" cy="21.7" r="1.6"/>
+    </g>
+    <path d="M50,50 m-7,0 a7,7 0 1,0 14,0 a5,5 0 1,0 -10,0 a3,3 0 1,0 6,0" fill="none" stroke="#C79A46" stroke-width="1.1" opacity=".85"/>
+    <polygon points="50,16 55,50 50,44 45,50" fill="#C79A46"/>
+    <polygon points="50,84 55,50 50,56 45,50" fill="#DCEFE2" opacity=".8"/>
+    <path d="M50,6 L52,11 L57,12 L52,14 L50,19 L48,14 L43,12 L48,11 Z" fill="#F2E1AE"/>
+    <circle cx="50" cy="50" r="2.4" fill="#F7F5EE"/>
+  </svg>`;
+}
+document.querySelectorAll('.logo-mount').forEach(el=>{
+  el.innerHTML = compassSVG(el.dataset.size || 36);
+});
+
+/* ---------------- Page routing ---------------- */
+function goPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  document.getElementById('primaryNav').classList.remove('open');
+}
+function toggleMenu(){ document.getElementById('primaryNav').classList.toggle('open'); }
+
+/* ---------------- Services data ---------------- */
+const services = [
+  {b:"000°",name:"ABA Therapy",short:"Applied Behavior Analysis to build communication, social, and daily-living skills.",
+   points:["Individualized, goal-based programs","1:1 sessions with credentialed BCBAs/RBTs","Data collected every session for progress tracking"]},
+  {b:"090°",name:"Speech Therapy",short:"Speech-language pathology for articulation, language, feeding, and fluency.",
+   points:["Articulation & language development","AAC and communication device support","Feeding and swallowing therapy"]},
+  {b:"180°",name:"Occupational Therapy",short:"Building fine motor, sensory processing, and everyday independence skills.",
+   points:["Fine motor & handwriting skills","Sensory integration strategies","Support for self-care routines"]},
+  {b:"270°",name:"Physical Therapy",short:"Gross motor strength, coordination, and mobility for confident movement.",
+   points:["Gross motor strength & balance","Gait and mobility training","Post-injury or developmental support"]},
+];
+function renderServices(containerId){
+  const el = document.getElementById(containerId);
+  el.innerHTML = services.map((s,i)=>`
+    <div class="svc-card" id="${containerId}-${i}">
+      <span class="svc-bearing">${s.b}</span>
+      <div class="svc-icon">✦</div>
+      <h3>${s.name}</h3>
+      <p>${s.short}</p>
+      <button class="svc-toggle" onclick="toggleSvc('${containerId}-${i}')">Learn more <span class="chevron">⌄</span></button>
+      <div class="svc-detail"><ul>${s.points.map(p=>`<li>${p}</li>`).join('')}</ul></div>
+    </div>`).join('');
+}
+function toggleSvc(id){ document.getElementById(id).classList.toggle('open'); }
+renderServices('homeServicesGrid');
+renderServices('servicesPageGrid');
+
+/* ---------------- Appointment form ---------------- */
+function selectVisitType(type){
+  const btnIn = document.getElementById('toggleInperson');
+  const btnV = document.getElementById('toggleVirtual');
+  const fieldIn = document.getElementById('fieldInperson');
+  const fieldV = document.getElementById('fieldVirtual');
+  const submitBtn = document.getElementById('apptSubmitBtn');
+  if(type==='inperson'){
+    btnIn.classList.add('active'); btnV.classList.remove('active');
+    fieldIn.classList.add('show'); fieldV.classList.remove('show');
+    submitBtn.innerText = 'Request In-Person Visit';
+  } else {
+    btnV.classList.add('active'); btnIn.classList.remove('active');
+    fieldV.classList.add('show'); fieldIn.classList.remove('show');
+    submitBtn.innerText = 'Request Virtual Visit';
+  }
+}
+function submitAppt(e){
+  e.preventDefault();
+  document.getElementById('apptSuccess').classList.add('show');
+  return false;
+}
+
+/* ---------------- Login / dashboards ---------------- */
+function doLogin(e,type){
+  e.preventDefault();
+  if(type==='employee'){
+    document.getElementById('empLoginBox').style.display='none';
+    document.getElementById('empDash').classList.add('show');
+  } else {
+    document.getElementById('cliLoginBox').style.display='none';
+    document.getElementById('cliDash').classList.add('show');
+  }
+  return false;
+}
+function doLogout(type){
+  if(type==='employee'){
+    document.getElementById('empDash').classList.remove('show');
+    document.getElementById('empLoginBox').style.display='block';
+  } else {
+    document.getElementById('cliDash').classList.remove('show');
+    document.getElementById('cliLoginBox').style.display='block';
+  }
+}
+function showPane(prefix,pane){
+  const scope = prefix==='emp' ? 'empDash' : 'cliDash';
+  document.querySelectorAll('#'+scope+' .dash-pane').forEach(p=>p.classList.remove('active'));
+  document.getElementById(prefix+'-'+pane).classList.add('active');
+  document.querySelectorAll('#'+scope+' .dash-nav button').forEach(b=>b.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+}
+function selectClient(el,name){
+  document.querySelectorAll('#emp-clients .client-item').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('sessClientName').innerText = name;
+}
+function tally(btn,delta){
+  const countEl = btn.parentElement.querySelector('.count');
+  let v = parseInt(countEl.innerText)+delta;
+  if(v<0) v=0;
+  countEl.innerText = v;
+}
+function saveNote(){ document.getElementById('noteSuccess').classList.add('show'); }
+
+/* ---------------- Sign & pay modals ---------------- */
+let activeDoc = null, activeInv = null;
+function openSign(id,title){
+  activeDoc = id;
+  document.getElementById('signTitle').innerText = title;
+  document.getElementById('signName').value='';
+  document.getElementById('sigPreview').innerText='Your signature will appear here';
+  document.getElementById('signModal').classList.add('show');
+}
+document.addEventListener('input',function(e){
+  if(e.target && e.target.id==='signName'){
+    document.getElementById('sigPreview').innerText = e.target.value || 'Your signature will appear here';
+  }
+});
+function confirmSign(){
+  const name = document.getElementById('signName').value.trim();
+  if(!name){ alert('Please type your name to sign.'); return; }
+  const item = document.getElementById(activeDoc);
+  item.classList.add('signed');
+  item.querySelector('.dt span').innerText = 'Signed ' + new Date().toLocaleDateString();
+  const btn = item.querySelector('button');
+  btn.outerHTML = '<button class="btn btn-sm" disabled style="opacity:.6;background:var(--forest-700);color:#fff;">Signed</button>';
+  closeModal('signModal');
+}
+function openPay(id,amount){
+  activeInv = id;
+  document.getElementById('payAmount').innerText = amount;
+  document.getElementById('payModal').classList.add('show');
+}
+function confirmPay(){
+  const item = document.getElementById(activeInv);
+  item.classList.add('paid');
+  item.querySelector('.it span').innerText = 'Paid ' + new Date().toLocaleDateString();
+  const btn = item.querySelector('button');
+  btn.outerHTML = '<button class="btn btn-sm" disabled style="opacity:.6;background:var(--forest-700);color:#fff;">Paid</button>';
+  closeModal('payModal');
+}
+function closeModal(id){ document.getElementById(id).classList.remove('show'); }
+
+/* ---------------- Chat widget ---------------- */
+function toggleChat(){ document.getElementById('chatPanel').classList.toggle('show'); }
+const chatAnswers = {
+  services: "We offer ABA, Speech-Language, Occupational, and Physical Therapy for children and families, available both in-person at our clinics and via virtual visits.",
+  appointment: "You can request an in-person or virtual visit from the 'Book an Appointment' page — just choose the option that fits your family best.",
+  insurance: "We work with many major insurance plans. Share your plan details with our care coordination team and we'll verify your benefits before your first visit.",
+  location: "We have two clinic locations: North Clinic (4820 Compass Way) and South Clinic (220 Harbor Light Rd). Virtual visits are available from anywhere.",
+  hours: "Our clinics and virtual visits are available Monday–Friday, 8am–6pm.",
+  default: "Thanks for the message! For anything clinical or account-specific, our care team can help directly — feel free to call or use the appointment request form."
+};
+function addMsg(text,who){
+  const body = document.getElementById('chatBody');
+  const div = document.createElement('div');
+  div.className = 'msg '+who;
+  div.innerText = text;
+  body.appendChild(div);
+  body.scrollTop = body.scrollHeight;
+}
+function quickAsk(key){
+  addMsg(document.querySelector(`.chat-quick button[onclick="quickAsk('${key}')"]`).innerText,'user');
+  setTimeout(()=>addMsg(chatAnswers[key]||chatAnswers.default,'bot'),350);
+}
+function sendChat(e){
+  e.preventDefault();
+  const input = document.getElementById('chatInput');
+  const val = input.value.trim();
+  if(!val) return false;
+  addMsg(val,'user');
+  input.value='';
+  const lower = val.toLowerCase();
+  let key='default';
+  if(lower.includes('insur')) key='insurance';
+  else if(lower.includes('appoint')||lower.includes('book')||lower.includes('visit')||lower.includes('schedul')) key='appointment';
+  else if(lower.includes('locat')||lower.includes('clinic')||lower.includes('address')) key='location';
+  else if(lower.includes('hour')||lower.includes('open')) key='hours';
+  else if(lower.includes('service')||lower.includes('aba')||lower.includes('speech')||lower.includes('ot')||lower.includes('pt')) key='services';
+  setTimeout(()=>addMsg(chatAnswers[key],'bot'),400);
+  return false;
+}
+</script>
+</body>
+</html>
